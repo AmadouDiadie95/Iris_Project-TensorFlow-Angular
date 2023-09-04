@@ -10,7 +10,7 @@ export class AppComponent implements OnInit{
 
    public tensors:tf.Tensor2D[]=[];
    public operation:string;
-   public model:tf.Sequential;
+   public model: any // tf.Sequential;
    public learningRate:number=0.01;
   private modelCreated: boolean;
   public xs:Array<number[]>=[];
@@ -124,7 +124,7 @@ export class AppComponent implements OnInit{
         epochs:this.epochs,
         validationData:[inputsTest,targetsTest],
         callbacks:{
-          onEpochEnd:(epoch,logs)=>{
+          onEpochEnd: async (epoch,logs) => {
             this.currentEpoch=epoch;
             this.currentLoss=logs.loss;
             this.currentAccuracy=logs.acc;
